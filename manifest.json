@@ -1,0 +1,54 @@
+{
+  "name": "SABBOLE",
+  "description": "An auto fill service to help booking train tickets by automating form filling in IRCTC website.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "tabs.html",
+    "default_title": "SABBOLE"
+  },
+  "icons": {
+    "16": "rail_128.png",
+    "32": "rail_128.png",
+    "48": "rail_128.png",
+    "128": "rail_128.png"
+  },
+  "background": {
+    "service_worker": "./background_script.js"
+  },
+  "content_scripts": [
+    {
+      "js": ["irctc_upi.js"],
+      "matches": ["https://www.irctcipay.com/pgui/jsp/*"],
+      "run_at": "document_end"
+     },
+    {
+    "js": ["phonepe_upi.js"],
+    "matches": ["https://mercury-t2.phonepe.com/*"],
+    "run_at": "document_end"
+    },
+    {
+    "js": ["paytm_upi.js"],
+    "matches": ["https://secure.paytmpayments.com/*"],
+    "run_at": "document_end"
+    },
+    {
+    "js": ["hdfc_pay.js"],
+    "matches": ["https://hdfcbankpayments.hdfcbank.com/*"],
+    "run_at": "document_end"
+    },
+    {
+    "js": ["secure_hdfc.js"],
+    "matches": ["https://securehdfc-acs2ui-b1-indmum-mumsif.hdfcbank.com/*"],
+    "run_at": "document_end"
+    }
+	],
+  "permissions": ["scripting", "tabs", "storage"],
+  "host_permissions": [
+    "https://www.irctc.co.in/",
+    "https://script.google.com/",
+    "https://script.googleusercontent.com/",
+    "https://raw.githubusercontent.com/",
+    "https://shahidtatkal.github.io/*"
+    ]
+}
